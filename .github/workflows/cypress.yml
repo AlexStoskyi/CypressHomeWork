@@ -1,50 +1,37 @@
-name: Cypress
 
+name: Cypress Tests
 on:
-  workflow_dispatch:
+    push:
+        branches: [main]
+    pull_request:
+        branches: [main]
+    repository_dispatch:
+        types: [cypress]
+    workflow_dispatch:
 
-  push:
-    branches: [master]
+concurrency: cypress_tests
 
-  pull_request:
-    branches: [master]
 
 jobs:
-  test:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    name: E2E on Chrome
+    test:
+        timeout-minutes: 60
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              name: Instal latest Node
+              with:
+                  node-version: lts/*
 
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2, 3, 4, 5]
+            - name: Install dependencies
+              run: npm ci
 
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+            - name: Run tests
+              run: open:cypress
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          browser: chrome
-          record: true
-          parallel: true
-        env:
-          group: 'UI-Chrome'
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Screenshots report
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-          if-no-files-found: ignore
-
-      - name: Video report
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-videos
-          path: cypress/videos
-          if-no-files-found: ignore
+            - name: Deploy report to GitHub Pages
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_branch: reports
+                  publish_dir: reports/html
