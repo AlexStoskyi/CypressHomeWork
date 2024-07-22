@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "open:cypress": "npx cypress open"
+    "open:cypress": "npx cypress open",
+    "cy:run": "cypress run --record --key $CYPRESS_RECORD_KEY"
   },
   "description": "",
   "devDependencies": {
