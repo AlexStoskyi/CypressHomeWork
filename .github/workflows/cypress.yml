@@ -37,7 +37,7 @@ jobs:
       - name: Run Cypress tests
         run: npx cypress run
         env:
-          CYPRESS_BASE_URL: https://your-app-url.com # Замініть на URL вашого додатка, якщо потрібно
+          CYPRESS_BASE_URL: https://conduit.realworld.how/ # Замініть на URL вашого додатка, якщо потрібно
 
       - name: Upload Cypress test results
         uses: actions/upload-artifact@v3
