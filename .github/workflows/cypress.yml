@@ -1,53 +1,46 @@
 name: Cypress Tests
 
 on:
-  workflow_dispatch:
-
   push:
-    branches: [master]
-  
+    branches:
+      - main
   pull_request:
-    branches: [master]
-  
-jobs:
+    branches:
+      - main
 
+jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     name: E2E on Chrome
 
     strategy:
-      fail-fast: false 
+      fail-fast: false
       matrix:
         containers: [1, 2, 3, 4, 5]
 
+  cypress:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          browser: chrome
-          record: true
-          parallel: true 
+          node-version: '14' # Вкажіть версію Node.js, яка вам потрібна
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Cypress tests
+        run: npx cypress run
         env:
-          group: 'UI-Chrome'
-          TZ: Europe/Warsaw
-          CYPRESS_ENV: Poland
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_BASE_URL: https://your-app-url.com # Замініть на URL вашого додатка, якщо потрібно
 
-      - name: Screenshots report
-        uses: actions/upload-artifact@v4
+      - name: Upload Cypress test results
+        uses: actions/upload-artifact@v3
         with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-          if-no-files-found: ignore 
-        
-      - name: Video report  
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-videos
-          path: cypress/videos
-          if-no-files-found: ignore
+          name: cypress-results
+          path: cypress/results # Шлях до результатів тестування, замініть на ваш фактичний шлях

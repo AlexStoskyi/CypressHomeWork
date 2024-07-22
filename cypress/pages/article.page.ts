@@ -32,7 +32,7 @@ class ArticlePage {
         });
     };
     deleteArticle() {
-        
+
 
     };
 
