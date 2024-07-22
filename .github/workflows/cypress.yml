@@ -14,6 +14,10 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
