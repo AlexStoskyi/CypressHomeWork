@@ -8,7 +8,11 @@ Clone git repository git clone
 Install project dependencies specified in the package.json npm install
 
 ⚙️ Running Tests
-run with UI - npx cypress open 
+Open UI window for testing - npx cypress open 
+run tests - npx cypress run
+run tests in chrome browser - npx cypress run --browser chrome
+
+
 
 For reporting used Allure Report - Automation Test Reporting Tool
 Learn more about Allure Report at Allure
