@@ -9,6 +9,15 @@ on:
       - main
 
 jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    name: E2E on Chrome
+
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3, 4, 5]
   cypress-run:
     runs-on: ubuntu-latest
 
