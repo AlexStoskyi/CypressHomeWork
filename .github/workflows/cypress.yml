@@ -9,23 +9,21 @@ on:
       - main
 
 jobs:
-  test:
+  cypress-run:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    name: E2E on Chrome
+    name: E2E Tests on Chrome
 
     strategy:
       fail-fast: false
       matrix:
         containers: [1, 2, 3, 4, 5]
-  cypress-run:
-    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
@@ -34,6 +32,10 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          record: true
+          parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-        run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
