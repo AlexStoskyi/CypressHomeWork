@@ -9,38 +9,22 @@ on:
       - main
 
 jobs:
-  test:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    name: E2E on Chrome
-
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2, 3, 4, 5]
-
-  cypress:
+  cypress-run:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14' # Вкажіть версію Node.js, яка вам потрібна
+          node-version: '18'
 
       - name: Install dependencies
         run: npm install
 
       - name: Run Cypress tests
-        run: npx cypress run
         env:
-          CYPRESS_BASE_URL: https://conduit.realworld.how/ # Замініть на URL вашого додатка, якщо потрібно
-
-      - name: Upload Cypress test results
-        uses: actions/upload-artifact@v3
-        with:
-          name: cypress-results
-          path: cypress/results # Шлях до результатів тестування, замініть на ваш фактичний шлях
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+        run: npx cypress run --record --key ${{ secrets.CYPRESS_RECORD_KEY }}
