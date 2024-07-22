@@ -1,0 +1,8 @@
+{
+  "name": "test_user_1",
+  "email": "test_user@gmail.com",
+  "password": "12345",
+  "articleName": "test_article_name",
+  "errorMessage": "email or password is invalid",
+  "settingsURL": "https://conduit.realworld.how/settings"
+}
