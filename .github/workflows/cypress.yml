@@ -38,7 +38,6 @@ jobs:
           publish_branch: reports
           publish_dir: reports/html
         env:
-          CYPRESS_PROJECT_ID: ${{ secrets.EXAMPLE_PROJECT_ID }}
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
