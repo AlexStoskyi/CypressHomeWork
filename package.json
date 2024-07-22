@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "open:cypress": "npx cypress open"
+  },
   "description": "",
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
