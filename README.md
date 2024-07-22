@@ -13,16 +13,9 @@
 - run tests - npx cypress run
 - run tests in chrome browser - npx cypress run --browser chrome
 
+## 📝 Cloud cypress report
+- Learn more about Cypress Cloud at - [Documentation](https://docs.cypress.io/guides/overview/why-cypress)
+
+- To open cloud cypress report - [Cloud reports](https://cloud.cypress.io/organizations/c96bd102-a6a3-4258-ba8e-19c794d60176/projects)
 
 
-## For reporting used Allure Report - Automation Test Reporting Tool
-- Learn more about Allure Report at Allure
-
-- To generate allure report:
-
-- npm run allure:generateReport
-- To open allure report:
-
-npm run allure:openReport
-### 🌏 Report on CI
-https://example.github.io/example

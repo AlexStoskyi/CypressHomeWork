@@ -1,4 +1,4 @@
-name: CypressHomeWork
+name: Cypress
 
 on:
   workflow_dispatch:
