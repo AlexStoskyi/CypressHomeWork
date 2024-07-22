@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
+        uses: npx cypress run
         with:
           browser: chrome
           record: true

@@ -4,8 +4,9 @@
 ## 📦 Setup
 - Install node.js - JavaScript runtime environment
 - Make sure Java version 8 or above installed, and its directory is specified in the JAVA_HOME environment variable for Allure Report
-- Clone git repository git clone 
-- Install project dependencies specified in the package.json npm install
+- Clone git repository - git clone https://github.com/AlexStoskyi/CypressHomeWork
+
+- Install project dependencies specified in the package.json - npm install
 
 ## ⚙️ Running Tests
 - Open UI window for testing - npx cypress open 
