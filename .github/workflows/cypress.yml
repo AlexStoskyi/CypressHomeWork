@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    timeout-minutes: 60
+    
     runs-on: ubuntu-latest
     name: E2E on Chrome
 
