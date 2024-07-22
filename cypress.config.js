@@ -1,13 +1,11 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   projectId: 'tzttyb',
   viewportWidth: 1920,
   viewportHeight: 1080,
   e2e: {
-    setupNodeEvents(on, config) {
-    
-    },
+    setupNodeEvents(on, config) {},
+    baseUrl: 'https://conduit.realworld.how',
   },
 });
-

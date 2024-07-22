@@ -25,7 +25,7 @@ class MainPage {
   };
 
   visitLoginPage() {
-    cy.visit('https://conduit.realworld.how/');
+    cy.visit('/');
   }
 
   userNameVisible(name: string) {
